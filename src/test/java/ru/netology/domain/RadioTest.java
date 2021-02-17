@@ -15,8 +15,8 @@ public class RadioTest {
     @Test
     public void changeCertainRadioStation() {
         Radio station = new Radio();
-        station.setCurrentRadioStation(7);
-        assertEquals(7, station.getCurrentRadioStation());
+        station.setCurrentRadioStation(5);
+        assertEquals(5, station.getCurrentRadioStation());
 
     }
 
@@ -28,12 +28,28 @@ public class RadioTest {
         assertEquals(0, station.getCurrentRadioStation());
 
     }
+    @Test
+    public void OverLastRadioStation() {
+        Radio station = new Radio();
+        station.setCurrentRadioStation(11);
+        station.getCurrentRadioStation();
+        assertEquals(0, station.getCurrentRadioStation());
+
+    }
 
     @Test
     public void changeUnderInitialRadioStation() {
         Radio station = new Radio();
         station.setCurrentRadioStation(0);
         station.prevRadioStation();
+        assertEquals(9, station.getCurrentRadioStation());
+
+    }
+    @Test
+    public void UnderInitialRadioStation() {
+        Radio station = new Radio();
+        station.setCurrentRadioStation(-1);
+        station.getCurrentRadioStation();
         assertEquals(9, station.getCurrentRadioStation());
 
     }
