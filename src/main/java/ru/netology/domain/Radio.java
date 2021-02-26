@@ -23,6 +23,10 @@ public class Radio {
     }
 
     public void setCurrentRadioStation(int currentRadioStation) {
+        this.currentRadioStation = currentRadioStation;
+    }
+
+    public void changeRadioStation() {
         if (currentRadioStation > lastRadioStation) {
             this.currentRadioStation = initialRadioStation;
             return;
