@@ -16,6 +16,7 @@ public class RadioTest {
     public void changeCertainRadioStation() {
         Radio station = new Radio();
         station.setCurrentRadioStation(5);
+        station.changeRadioStation();
         assertEquals(5, station.getCurrentRadioStation());
 
     }
@@ -23,8 +24,8 @@ public class RadioTest {
     @Test
     public void changeOverLastRadioStation() {
         Radio station = new Radio();
-        station.setCurrentRadioStation(9);
-        station.nextRadioStation();
+        station.setCurrentRadioStation(10);
+        station.changeRadioStation();
         assertEquals(0, station.getCurrentRadioStation());
 
     }
@@ -32,7 +33,8 @@ public class RadioTest {
     public void OverLastRadioStation() {
         Radio station = new Radio();
         station.setCurrentRadioStation(11);
-        station.getCurrentRadioStation();
+        station.nextRadioStation();
+        station.changeRadioStation();
         assertEquals(0, station.getCurrentRadioStation());
 
     }
@@ -41,6 +43,7 @@ public class RadioTest {
     public void changeUnderInitialRadioStation() {
         Radio station = new Radio();
         station.setCurrentRadioStation(0);
+        station.changeRadioStation();
         station.prevRadioStation();
         assertEquals(9, station.getCurrentRadioStation());
 
@@ -49,7 +52,7 @@ public class RadioTest {
     public void UnderInitialRadioStation() {
         Radio station = new Radio();
         station.setCurrentRadioStation(-1);
-        station.getCurrentRadioStation();
+        station.changeRadioStation();
         assertEquals(9, station.getCurrentRadioStation());
 
     }
@@ -58,6 +61,7 @@ public class RadioTest {
     public void nextRadioStation() {
         Radio station = new Radio();
         station.setCurrentRadioStation(6);
+        station.changeRadioStation();
         station.nextRadioStation();
         assertEquals(7, station.getCurrentRadioStation());
     }
@@ -66,6 +70,7 @@ public class RadioTest {
     public void prevRadioStation() {
         Radio station = new Radio();
         station.setCurrentRadioStation(6);
+        station.changeRadioStation();
         station.prevRadioStation();
         assertEquals(5, station.getCurrentRadioStation());
     }
@@ -83,7 +88,6 @@ public class RadioTest {
         volume.setVolume(11);
         volume.volumeUp();
         assertEquals(10, volume.getVolume());
-        System.out.println(1);
     }
 
 
