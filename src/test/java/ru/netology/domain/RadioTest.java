@@ -4,63 +4,54 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTest {
+
     @Test
-    public void createRadio() {
-        Radio radio = new Radio();
-        String expected = "RadioPhilips";
-        assertNull(radio.getName());
-        radio.setName(expected);
-        assertEquals(expected, radio.getName());
-    }
-    @Test
-    public void changeCertainRadioStation() {
-        Radio station = new Radio();
-        station.setCurrentRadioStation(5);
-        station.changeRadioStation();
-        assertEquals(5, station.getCurrentRadioStation());
+    public void verifyRadioFields() {
+        Radio radio = new Radio("Philips",10,0,5,100,0,50);
+        assertEquals(5, radio.getCurrentRadioStation());
+        assertEquals(10,radio.getLastRadioStation());
+        assertEquals(0,radio.getInitialRadioStation());
+        assertEquals(50,radio.getVolume());
+        assertEquals(100,radio.getMaxVolume());
+        assertEquals(0, radio.getMinVolume());
+
 
     }
 
-    @Test
-    public void changeOverLastRadioStation() {
-        Radio station = new Radio();
-        station.setCurrentRadioStation(10);
-        station.changeRadioStation();
-        assertEquals(0, station.getCurrentRadioStation());
-
-    }
     @Test
     public void OverLastRadioStation() {
-        Radio station = new Radio();
-        station.setCurrentRadioStation(11);
+        Radio station = new Radio("Philips",10,0,10,100,0,50);
+        station.changeRadioStation();
         station.nextRadioStation();
+        assertEquals(0, station.getCurrentRadioStation());
+
+    }
+    @Test
+    public void ChangeOverLastRadioStation() {
+        Radio station = new Radio("Philips",10,0,11,100,0,50);
         station.changeRadioStation();
         assertEquals(0, station.getCurrentRadioStation());
 
     }
 
     @Test
-    public void changeUnderInitialRadioStation() {
-        Radio station = new Radio();
-        station.setCurrentRadioStation(0);
-        station.changeRadioStation();
+    public void UnderInitialRadioStation() {
+        Radio station = new Radio("Philips",10,0,0,100,0,50);
         station.prevRadioStation();
-        assertEquals(9, station.getCurrentRadioStation());
+        assertEquals(10, station.getCurrentRadioStation());
 
     }
     @Test
-    public void UnderInitialRadioStation() {
-        Radio station = new Radio();
-        station.setCurrentRadioStation(-1);
+    public void ChangeUnderInitialRadioStation() {
+        Radio station = new Radio("Philips",10,0,-1,100,0,50);
         station.changeRadioStation();
-        assertEquals(9, station.getCurrentRadioStation());
+        assertEquals(10, station.getCurrentRadioStation());
 
     }
 
     @Test
     public void nextRadioStation() {
-        Radio station = new Radio();
-        station.setCurrentRadioStation(6);
+        Radio station = new Radio("Philips",10,0,6,100,0,50);
         station.changeRadioStation();
         station.nextRadioStation();
         assertEquals(7, station.getCurrentRadioStation());
@@ -68,8 +59,7 @@ public class RadioTest {
 
     @Test
     public void prevRadioStation() {
-        Radio station = new Radio();
-        station.setCurrentRadioStation(6);
+        Radio station = new Radio("Philips",10,0,6,100,0,50);
         station.changeRadioStation();
         station.prevRadioStation();
         assertEquals(5, station.getCurrentRadioStation());
@@ -77,17 +67,16 @@ public class RadioTest {
 
     @Test
     public void volumeUpOverMax() {
-        Radio volume = new Radio();
-        volume.setVolume(10);
+        Radio volume = new Radio("Philips",10,0,6,100,0,100);
         volume.volumeUp();
-        assertEquals(10, volume.getVolume());
+        assertEquals(100, volume.getVolume());
     }
     @Test
     public void volumeOverMax() {
         Radio volume = new Radio();
-        volume.setVolume(11);
+        volume.setVolume(110);
         volume.volumeUp();
-        assertEquals(10, volume.getVolume());
+        assertEquals(100, volume.getVolume());
     }
 
 
