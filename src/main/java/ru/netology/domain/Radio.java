@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+
+
 public class Radio {
     private String name;
     private int lastRadioStation = 10;
@@ -44,6 +46,7 @@ public class Radio {
         }
         currentRadioStation --;
     }
+
 
 
     public void setVolume(int volume) {
